@@ -13,7 +13,7 @@ jobs:
 
       - name: Build and Publish to Github Packages Registry
         uses: elgohr/Publish-Docker-Github-Action@master
-       with:
+        with:
           name: ${{ github.repository }}
           registry: ghcr.io
           username: ${{ github.repository_owner }}

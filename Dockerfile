@@ -9,7 +9,7 @@ RUN go mod download
 COPY . ${ROOT}
 
 # ref: https://github.com/GoogleContainerTools/distroless/blob/main/examples/go/Dockerfile
-RUN CGO_ENABLED=0 GOOS=linux go build -o /go/bin/app
+RUN CGO_ENABLED=0 GOOS=linux go build -o /go/bin/app cmd/main.go
 
 
 FROM gcr.io/distroless/static
