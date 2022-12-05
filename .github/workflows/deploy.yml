@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout master
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Build and Publish to Github Packages Registry
         uses: elgohr/Publish-Docker-Github-Action@master
@@ -38,4 +38,3 @@ jobs:
             cd caddy-docker-proxy/${{ github.event.repository.name }}
             docker-compose down --rmi all --volumes --remove-orphans
             docker-compose up -d
-
