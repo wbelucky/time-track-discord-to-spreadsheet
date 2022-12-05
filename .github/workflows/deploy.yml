@@ -12,14 +12,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build and Publish to Github Packages Registry
-        uses: elgohr/Publish-Docker-Github-Action@master
+        uses: elgohr/Publish-Docker-Github-Action@main
         with:
           name: ${{ github.repository }}
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
           dockerfile: Dockerfile
-          # buildargs: NEXT_PUBLIC_BACKEND_URL,NEXT_PUBLIC_META_API_KEY
           tags: latest
 
   deploy:
@@ -35,6 +34,7 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
           port: 22
           script: |
+            set -eu
             cd caddy-docker-proxy/${{ github.event.repository.name }}
             docker-compose down --rmi all --volumes --remove-orphans
             docker-compose up -d
